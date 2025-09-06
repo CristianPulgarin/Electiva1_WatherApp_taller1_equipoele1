@@ -37,31 +37,37 @@ const search = async (city:any)=>{
     setGetText(value);
   }
 
-    useEffect(()=>{
-        search(getText)
-    })
+  const onButtonClick = async (_e:any) =>{
+  if (getText.trim() !== "") {
+    search(getText); 
+  }
+  }
+
+   
   return (
     <>
     <h1 className='titulo'>WEATHER APP</h1>
         
         <div className="container">
         <input 
+        placeholder='Ingresa la ciudad'
         type="text"
         value={getText}
         onChange={onInputChange}
         className='input'
          />
-         
-         <button
-         className='btn_search'
-         >
-            <img src={buscar} 
-            width={'25px'}
-            height={'25px'}
-            className='img_btn'
-            
-            alt="" />
+
+         <button className='btn_search'>
+             <img src={buscar}
+             width={'30px'}
+             height={'30px'}
+             alt="" 
+             onClick={onButtonClick}
+             />
+             
          </button>
+         
+         
          </div>
 
 
@@ -73,6 +79,9 @@ const search = async (city:any)=>{
             <br />
             <h1 className='humidity'>
                 Humedad: {weather.humidity}
+            </h1>
+            <h1 className='temp'>
+                Temperatura: {weather.temperature}
             </h1>
 
         </div>
