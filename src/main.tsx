@@ -7,7 +7,9 @@ import { GetApi } from './components/GetApi'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     
-    <GetApi/>
+    {/* <Interface/>
+     */}
 
+  <GetApi/>
   </StrictMode>,
 )

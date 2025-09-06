@@ -1,42 +1,74 @@
-import { fetchWeatherApi } from 'openmeteo';
+import React, { use, useEffect, useState } from 'react'
+import buscar from '../img/buscar.png'
 
-const params = {
-	"latitude": 52.52,
-	"longitude": 13.41,
-	"hourly": "temperature_2m",
-};
 
-export const GetApi = async ():Promise<any> => {
+export const GetApi = () => {
 
-    const baseUrl = `https://api.open-meteo.com/v1/forecast`;
+    const [weather,setWeather] = useState<any>(false)
+const [getText,setGetText] =useState<string>("")
+    const search = async (city:any)=>{
+        try{
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=04308b510bc6871e2f1264ec5e548951`
+            
+            const response = await fetch(url);
+            const data = await response.json();
+            console.log(data);
+            setWeather({
+                humidity: data.main.humidity,
+                windSpeed: data.wind.speed,
+                temperature: Math.floor(data.main.temp),
+                location:data.name
+                
+            })
+            
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
+
+     const onInputChange = (e:any)=>{
+    const value = e.target.value;
+    console.log(value);
     
-    const responses = await fetchWeatherApi(baseUrl, params);
-    const response = responses[0];
+    setGetText(value);
+  }
 
-    const latitude = response.latitude();
-    const longitude = response.longitude();
-    const elevation = response.elevation();
-    const utcOffsetSeconds = response.utcOffsetSeconds();
+    useEffect(()=>{
+        search("Medellin")
+    })
+  return (
+    <>
+    <h1 className='titulo'>WEATHER APP</h1>
+        
+        <div className="container">
+        <input 
+        type="text"
+        value={getText}
+        onChange={onInputChange}
+        className='input'
+         />
+         
+         <button
+         className='btn_search'
+         >
+            <img src={buscar} 
+            width={'25px'}
+            height={'25px'}
+            className='img_btn'
+            alt="" />
+         </button>
+         </div>
 
-    
 
-    const hourly = response.hourly()!;
+        <div className="container_info">
 
-    const weatherData = {
-	hourly: {
-		time: [...Array((Number(hourly.timeEnd()) - Number(hourly.time())) / hourly.interval())].map(
-			(_, i) => new Date((Number(hourly.time()) + i * hourly.interval() + utcOffsetSeconds) * 1000)
-		),
-		temperature_2m: hourly.variables(0)!.valuesArray(),
-	},
-};
+            
 
-console.log("\nHourly data", weatherData.hourly)
-
-    // const {image} = await response.json();
-    // return image;
-
-
+        </div>
+        </>
+  )
 }
 
-
+export default GetApi
