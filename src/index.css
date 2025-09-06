@@ -2,31 +2,39 @@
   font-size: 40px;
   text-align: center;
   font-family:Arial, Helvetica, sans-serif;
-  margin-top: 20px;
+  margin-top: 50px;
   font-weight: bold;
+  border: 1px solid black;
+  width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
 }
 
 .container{
   display: flex;
-  justify-content: space-around;
-  width: 400px;
+  justify-content: center;
+  width: 600px;
   margin: 0 auto;
-margin-top: 30px;
+  margin-top: 30px;
 
   
 }
 
 .input{
-justify-content: space-around;
+justify-content: space-evenly;
 text-align: center;
 margin: auto 0;
 border-radius: 10px;
 height: 40px;
+width: 300px;
 }
 
 .btn_search{
   background-color: white;
   font-size: 30px;
+  margin-top: -8px;
   border-radius: 10px;
   height: 40px;
   border: white 1px solid;
@@ -39,20 +47,38 @@ margin-top: -15px;
 
 .container_info{
   justify-content: center;
-  
-
+  border: 1px solid black;
+  width: 600px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
   margin-top: 20px;
+}
+
+.img_clima{
+  margin: 0 auto;
+  margin-left: 250px;
+  justify-content: center;
 }
 
 .city{
     margin: 0 auto;
     text-align: center;
+    text-transform: uppercase;
 }
 
 .humidity{
   text-align: center;
+  text-transform: uppercase;
 }
 
 .temp{
   text-align: center;
+  text-transform: uppercase;
+}
+
+.clim{
+  text-align: center;
+  text-transform: uppercase;
 }

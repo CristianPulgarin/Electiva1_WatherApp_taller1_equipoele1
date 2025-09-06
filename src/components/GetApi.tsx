@@ -1,6 +1,6 @@
 import React, { use, useEffect, useRef, useState } from 'react'
 import buscar from '../img/buscar.png'
-
+import clima from '../img/clima.png'
 
 export const GetApi = () => {
 
@@ -19,7 +19,8 @@ const search = async (city:any)=>{
                 humidity: data.main.humidity,
                 windSpeed: data.wind.speed,
                 temperature: Math.floor(data.main.temp),
-                location:data.name
+                location:data.name,
+                weather: data.weather[0].main
                 
             })
             
@@ -46,6 +47,7 @@ const search = async (city:any)=>{
    
   return (
     <>
+    <br />
     <h1 className='titulo'>WEATHER APP</h1>
         
         <div className="container">
@@ -76,14 +78,22 @@ const search = async (city:any)=>{
             <h1 className='city'>
                 Ciudad: {weather.location}
             </h1>
+            <img 
+            className='img_clima'
+            src={clima}
+            width={'100px'}
+
+            />
             <br />
             <h1 className='humidity'>
-                Humedad: {weather.humidity}
+                Humedad: {weather.humidity}%
             </h1>
             <h1 className='temp'>
-                Temperatura: {weather.temperature}
+                Temperatura: {weather.temperature}°
             </h1>
-
+            <h1 className='clim'>
+                Clima: {weather.weather}
+            </h1>
         </div>
         </>
   )
