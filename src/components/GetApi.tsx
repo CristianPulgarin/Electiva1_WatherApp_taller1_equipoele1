@@ -1,12 +1,14 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { use, useEffect, useRef, useState } from 'react'
 import buscar from '../img/buscar.png'
 
 
 export const GetApi = () => {
 
+
     const [weather,setWeather] = useState<any>(false)
 const [getText,setGetText] =useState<string>("")
-    const search = async (city:any)=>{
+    
+const search = async (city:any)=>{
         try{
             const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=04308b510bc6871e2f1264ec5e548951`
             
@@ -36,7 +38,7 @@ const [getText,setGetText] =useState<string>("")
   }
 
     useEffect(()=>{
-        search("Medellin")
+        search(getText)
     })
   return (
     <>
@@ -57,6 +59,7 @@ const [getText,setGetText] =useState<string>("")
             width={'25px'}
             height={'25px'}
             className='img_btn'
+            
             alt="" />
          </button>
          </div>
@@ -64,7 +67,13 @@ const [getText,setGetText] =useState<string>("")
 
         <div className="container_info">
 
-            
+            <h1 className='city'>
+                Ciudad: {weather.location}
+            </h1>
+            <br />
+            <h1 className='humidity'>
+                Humedad: {weather.humidity}
+            </h1>
 
         </div>
         </>

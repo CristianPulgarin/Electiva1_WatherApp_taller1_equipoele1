@@ -35,3 +35,20 @@ height: 40px;
 .img_btn{
 margin-top: -15px;
 }
+
+
+.container_info{
+  justify-content: center;
+  
+
+  margin-top: 20px;
+}
+
+.city{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.humidity{
+  text-align: center;
+}
